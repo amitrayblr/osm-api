@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    container_name: osm_postgis
+    environment:
+      POSTGRES_USER: osm_user
+      POSTGRES_PASSWORD: osm_pass
+      POSTGRES_DB: osm_db
+    volumes:
+      - osm_data:/var/lib/postgresql/data
+      - ./db/init-postgis.sh:/docker-entrypoint-initdb.d/init-postgis.sh:ro
+      - ./db/data:/data:ro
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: osm_maxspeed_app
+    env_file:
+      - ./server/.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  osm_data:
