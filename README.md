@@ -27,14 +27,7 @@ docker-compose up --build -d
 
 - Import the data using
 ```
-docker-compose exec db osm2pgsql \
-  --hstore \
-  --slim \
-  --cache 2048 \
-  --number-processes 4 \
-  -d osm_db \
-  -U osm_user \
-  /data/name_of_data_file.osm.pbf
+docker-compose exec db osm2pgsql --hstore --slim --cache 2048 --number-processes 4 -d osm_db -U osm_user /data/name_of_data_file.osm.pbf
 ```
 
 - Hit the endpoint with
