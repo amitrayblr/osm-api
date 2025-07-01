@@ -19,7 +19,7 @@ git clone https://github.com/amitrayblr/osm-api.git
 ## Setup Environtment
 - Copy .env.example to .env within server/
 
-# Build & Start Everything
+## Build & Start Everything
 - In the terminal to build the environtment
 ```
 docker-compose up --build -d

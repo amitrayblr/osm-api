@@ -2,6 +2,7 @@ import pg from 'pg';
 import dotenv from 'dotenv';
 dotenv.config();
 
+// Create a connection pool
 const pool = new pg.Pool({
   host: process.env.PG_HOST,
   port: +process.env.PG_PORT,
